@@ -1,0 +1,28 @@
+===== Load Balancer Configuration =====
+Mode: single load balancer, quiet
+Servers: 20, clock cycles: 100000, seed: 5
+Initial queue: 2000, task time: 3-100 cycles
+New requests: up to 3 per cycle, 25% of cycles
+Queue target: 50-80 requests per server, 50 cycle cooldown
+Firewall blocks 10.0.0.0/8
+Firewall blocks 192.168.0.0/16
+Firewall blocks 172.16.5.0-172.16.5.255
+[LB-Main] Starting with 20 servers and 1945 queued requests
+
+===== Summary: LB-Main =====
+Cycles run:             100000
+Task time range:        3-100 cycles
+Queue size:             1945 at start, 1902 at end, 2037 peak
+Requests received:      51833 (1202 blocked by firewall)
+Requests processed:     48706 (23 still in progress)
+Average queue wait:     3223.0 cycles
+Servers:                20 at start, 25 at end, 26 peak
+Servers added/removed:  7 / 2
+Server utilization:     100.0%
+Final queue target:     1250-2000 (balanced)
+Requests per server:
+  # 3:  1935 # 4:  1913 # 5:  1908 # 6:  1938 # 7:  2013 # 8:  1899
+  # 9:  1952 #10:  1886 #11:  1966 #12:  1957 #13:  1979 #14:  1909
+  #15:  1952 #16:  2016 #17:  1962 #18:  1968 #19:  1902 #20:  1962
+  #21:  1901 #22:  1946 #23:  1953 #24:  1927 #25:  1960 #26:  1631
+  #27:   170

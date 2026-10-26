@@ -1,0 +1,32 @@
+# Light load: few new requests, so the load balancer should scale down
+# Format: key = value. Anything after # is a comment.
+# The number of servers and clock cycles are entered when the program starts.
+
+# --- Request generation ---
+initial_queue_multiplier = 100     # starting queue = servers * this value
+min_task_time = 3                  # cycles
+max_task_time = 100                # cycles
+arrival_probability = 0.05         # very light traffic
+max_arrivals_per_cycle = 3         # 1..N requests arrive when they do
+streaming_probability = 0.3        # fraction of jobs that are streaming (S)
+
+# --- Autoscaling ---
+lower_threshold = 50               # remove a server if queue < 50 * servers
+upper_threshold = 80               # add a server if queue > 80 * servers
+scale_cooldown = 50                # cycles to wait after adding/removing a server
+min_servers = 1
+max_servers = 1000
+
+# --- Firewall ---
+# CIDR (10.0.0.0/8), range (a.b.c.d-e.f.g.h), or a single IP. Repeat the key to add rules.
+blocked_range = 10.0.0.0/8
+blocked_range = 192.168.0.0/16
+blocked_range = 172.16.5.0-172.16.5.255
+attack_probability = 0.02          # fraction of requests that come from a blocked range
+
+# --- Mode and output ---
+use_switch = false                 # true: send P and S jobs to separate load balancers
+verbose = true                     # false = quiet (start and end summaries only)
+log_file = light.log
+status_interval = 1000             # cycles between status lines in verbose mode
+seed = 5                           # 0 = new random seed each run

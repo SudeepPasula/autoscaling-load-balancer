@@ -1,0 +1,13 @@
+# Build output
+loadbalancer
+*.o
+*.d
+project4.zip
+
+# Logs from local runs (the submitted log is log_20servers_100000cycles.txt)
+*.log
+
+# Generated Doxygen docs (hosted on people.tamu.edu)
+docs/
+
+.DS_Store
